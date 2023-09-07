@@ -103,8 +103,11 @@ public class HelloWorld extends javax.swing.JFrame {
         String idUser = fieldIdUser.getText();
         String pass = fieldPassword.getText();
         
-        bank.searchNasabah(new User(idUser,pass));
+        Nasabah nas = bank.searchNasabah(new User(idUser,pass));
         
+        Home home = new Home(nas);
+        home.setVisible(true);
+        this.dispose();
         
 
     }//GEN-LAST:event_btnSubmitActionPerformed

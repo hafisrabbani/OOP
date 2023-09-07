@@ -11,8 +11,8 @@ package projectBankPrivate;
  */
 public class Tabungan {
     
-    private int saldo; 
-    public static int bunga; 
+    public int saldo; 
+    public static int bunga;  
     
     public Tabungan(int saldo) {
         this.saldo = saldo;

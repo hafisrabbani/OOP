@@ -57,11 +57,11 @@ public class Bank {
         return dataNasabah[index];
     }
 
-    public Nasabah[] searchNasabah(String nama) {
+    public Nasabah[] searchNasabah(Nasabah nama) {
         Nasabah temp[] = new Nasabah[5];
         int n = 0;
         for (int i = 0; i < index; i++) {
-            if (dataNasabah[i].getNama().contains(nama)) {
+            if (dataNasabah[i].getNama().contains((CharSequence) nama)) {
                 temp[n] = dataNasabah[i];
                 n++;
             }
@@ -79,6 +79,18 @@ public class Bank {
         }
         JOptionPane.showMessageDialog(null, "Tidak Ditemukan");
         return null;
+    }
+    
+    public int searchIndexNasabah(User user) {
+        for (int i = 0; i < index; i++) {
+            if ((dataNasabah[i].getUser().getIdUser().equalsIgnoreCase(user.getIdUser()))
+                    && (dataNasabah[i].getUser().getPassword().equalsIgnoreCase(user.getPassword()))) {
+                JOptionPane.showMessageDialog(null, getNasabah(i));
+                return i;
+            }
+        }
+        JOptionPane.showMessageDialog(null, "Tidak Ditemukan");
+        return -1;
     }
 
     public boolean tambahNasabah(Nasabah nas) {

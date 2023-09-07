@@ -13,7 +13,7 @@ public class Nasabah {
     private String nama;
     private Tabungan tab;
     private User user;
-
+ 
     public Nasabah(String nama, Tabungan tab, User user) {
         this.nama = nama;
         this.tab = tab;
