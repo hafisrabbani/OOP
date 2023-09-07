@@ -4,8 +4,6 @@
  */
 package projectBankPrivate;
 
-
-
 /**
  *
  * @author Nitro
@@ -21,7 +19,7 @@ public class Nasabah {
         this.tab = tab;
         this.user = user;
     }
-    
+
     public Nasabah(String nama, Tabungan tab) {
         this.nama = nama;
         this.tab = tab;
@@ -46,16 +44,10 @@ public class Nasabah {
     public User getUser() {
         return user;
     }
-    
 
     @Override
     public String toString() {
-        return "Nasabah{" + "nama=" + nama + ", tab=" + tab + '}' + "\n";
+        return "Nasabah{" + "nama=" + nama + ", tab=" + tab + ", user=" + user + '}';
     }
-    
-    
-    
-    
 
-    
 }

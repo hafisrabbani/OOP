@@ -27,7 +27,7 @@ public class User {
 
     @Override
     public String toString() {
-        return "User{" + "idUser=" + idUser + ", password=" + password + '}';
+        return "User{" + "idUser=" + idUser + '}';
     }
     
     
