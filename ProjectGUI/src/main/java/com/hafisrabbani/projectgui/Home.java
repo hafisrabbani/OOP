@@ -25,6 +25,7 @@ public class Home extends javax.swing.JFrame {
     public Home(Nasabah nasabah) {
         initComponents();
         this.nasabah = nasabah;
+        bank = Bank.getInstance();
         System.out.println(nasabah);
         labelSaldo.setText(nasabah.getTab().getSaldo() + "");
 //        bank.getNasabah(index);
@@ -54,6 +55,7 @@ public class Home extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         fieldJumlah = new javax.swing.JTextField();
         btnTransfer = new javax.swing.JButton();
+        backBtn = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -100,6 +102,13 @@ public class Home extends javax.swing.JFrame {
             }
         });
 
+        backBtn.setText("Kembali");
+        backBtn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                backBtnActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -121,10 +130,12 @@ public class Home extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(btnDeposit))
                             .addComponent(jLabel2)
-                            .addGroup(layout.createSequentialGroup()
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addComponent(fieldWithdraw, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(btnWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(backBtn)
+                                    .addComponent(btnWithdraw, javax.swing.GroupLayout.PREFERRED_SIZE, 85, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(fieldJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 149, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -166,7 +177,9 @@ public class Home extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(fieldJumlah, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(btnTransfer)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnTransfer)
+                    .addComponent(backBtn))
                 .addContainerGap(92, Short.MAX_VALUE))
         );
 
@@ -194,8 +207,25 @@ public class Home extends javax.swing.JFrame {
 
     private void btnTransferActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferActionPerformed
         // TODO add your handling code here:
+        String userID = fieldUserId.getText();
+        int jumlah = Integer.parseInt(fieldJumlah.getText());
+
+        Nasabah nas2 = bank.searchNasabah(userID);
+        System.out.println("nasabah2 = " + nas2.getNama());
+        nasabah.getTab().transferMoney(nas2.getTab(), jumlah);
+
+        labelSaldo.setText(nasabah.getTab().getSaldo() + "");
+        JOptionPane.showMessageDialog(null, nas2.getNama() + " " + nas2.getTab().getSaldo());
+
 
     }//GEN-LAST:event_btnTransferActionPerformed
+
+    private void backBtnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_backBtnActionPerformed
+        // TODO add your handling code here:
+        HelloWorld helloworld = new HelloWorld();
+        helloworld.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_backBtnActionPerformed
 
     /**
      * @param args the command line arguments
@@ -234,6 +264,7 @@ public class Home extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton backBtn;
     private javax.swing.JButton btnDeposit;
     private javax.swing.JButton btnTransfer;
     private javax.swing.JButton btnWithdraw;

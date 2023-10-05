@@ -21,11 +21,11 @@ public class HelloWorld extends javax.swing.JFrame {
      */
     public HelloWorld() {
         initComponents();
+        bank = Bank.getInstance();
         InputDataNasabah();
     }
 
     void InputDataNasabah(){
-        bank = Bank.getInstance();
         Tabungan t = new Tabungan(500);
         bank.tambahNasabah("syahrul ramadhan", t,new User("syahrul@gmail.com","123"));
         

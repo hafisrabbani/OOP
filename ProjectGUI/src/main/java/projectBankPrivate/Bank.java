@@ -81,16 +81,15 @@ public class Bank {
         return null;
     }
     
-    public int searchIndexNasabah(User user) {
+    public Nasabah searchNasabah(String userId) {
         for (int i = 0; i < index; i++) {
-            if ((dataNasabah[i].getUser().getIdUser().equalsIgnoreCase(user.getIdUser()))
-                    && (dataNasabah[i].getUser().getPassword().equalsIgnoreCase(user.getPassword()))) {
+            if (dataNasabah[i].getUser().getIdUser().equalsIgnoreCase(userId)) {
                 JOptionPane.showMessageDialog(null, getNasabah(i));
-                return i;
+                return getNasabah(i);
             }
         }
         JOptionPane.showMessageDialog(null, "Tidak Ditemukan");
-        return -1;
+        return null;
     }
 
     public boolean tambahNasabah(Nasabah nas) {
